@@ -1,32 +1,29 @@
 package com.example.hwtests.service;
 
-import com.example.hwtests.exception.DivisionByZeroException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Calculator {
+public class CalculatorService {
 
-    public String plus(int num1, int num2) {
-        int result = num1 + num2;
-        return num1 + " + " + num2 + " = " + result;
+    public Integer plus(int num1, int num2) {
+        return num1 + num2;
     }
 
-    public String minus(int num1, int num2) {
-        int result = num1 - num2;
-        return num1 + " - " + num2 + " = " + result;
+    public Integer minus(int num1, int num2) {
+        return num1 - num2;
     }
 
-    public String multiply(int num1, int num2) {
-        int result = num1 * num2;
-        return num1 + " * " + num2 + " = " + result;
+    public Integer multiply(int num1, int num2) {
+        return num1 * num2;
     }
 
-    public String divide(int num1, int num2) {
-        if(num2 == 0){
-            throw new DivisionByZeroException("Делитель равен 0");
+    public Integer divide(Integer num1, Integer num2) {
+        if (num1 == null || num2 == null) {
+            throw new IllegalArgumentException("Требуются оба параметра num1 и num2");
         }
-        int result = num1 / num2;
-        return num1 + " / " + num2 + " = " + result;
+        if (num2 == 0) {
+            throw new IllegalArgumentException("Делитель равен 0");
+        }
+        return num1 / num2;
     }
-
 }
